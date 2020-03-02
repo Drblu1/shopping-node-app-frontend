@@ -8,14 +8,17 @@ import { AddProductComponent } from './add-product/add-product.component';
 import {AppRoutingModule} from './app-routing.module';
 import { HeaderComponent } from './header/header.component';
 import {FormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import {PageNotFoundInterceptorService} from './page-not-found/page-not-found-interceptor.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     ShopComponent,
     AddProductComponent,
-    HeaderComponent
+    HeaderComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,11 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS, useClass: PageNotFoundInterceptorService, multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
