@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-xs-12">
-    <form #addProductForm="ngForm" (ngSubmit)="onSubmit(addProductForm)">
-      <input type="text" name="title" class="form-control">
+    <form class="form-group" #addProductForm="ngForm" (ngSubmit)="onSubmit(addProductForm)">
+      <input type="text" name="title" class="form-control" ngModel required>
       <button type="submit" class="btn btn-primary">Add Product</button>
     </form>
   </div>
